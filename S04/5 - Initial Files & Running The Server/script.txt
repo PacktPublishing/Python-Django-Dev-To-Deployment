@@ -1,0 +1,63 @@
+Alright so in this video were gonna go over the strutcurte that Django has given us when we created this application.
+
+So we have this folder called pyapp1 which includes both the virtual environment as well as the main project folder or called real_estate_finder but notice we get another folder with the same name, which is a bit weird. You can rename this folder if you want. I see alot of people rjust add -project to this one but im just gonna leave it for now... So this is our actual source code and this is where all our apps and stuff will go and ill get to that in a minute.
+
+manage.py
+Outside of that we have our manage.py command line tool, Well never had to edit this file for anything, at least not in this course.. 
+
+db.sqlite3
+and notice a db.sqlite3 file. So when you use django, you can use any type of database that you want and sqlite is sort of the default. It creates this file once we run our server. Sqlite is great for prototyping and maybe very small apps with litttle data but for real production apps youll wanna use like mysql or postgres or something like that and ill show you how to get those setup. But sqlite will stoire data in this file which isnt really readable. It stores the data in an efiicient way but its not really meant for us to read.
+
+So lets look in the real_estate_finder folder.
+
+pycache
+this pycache your not gonna have to worry about, theyll be generated when you run your server and youll never have to touch them at all. All it does is make your program start a little faster. When your scripts change, they will be recompiled, and if you delete the files or the whole folder and run your program again, they will reappear, so not important to us as django app developers, they just keep things running smoothly.
+
+__init__.py
+so this init.py file is always empty by default and it basically makes python see and treat directories as containing packages. So we can import files as packages and it prevents some of the directories with a common name, like lets say string, from unintentionally hiding valid modules. Im not positive on this but I think since version 3.3 you dont actually need this file but dont quote me on that. Were just gonna leave it alone. Anything you would need to edit this file for is beyond this course anyway.
+
+settings.py
+Ok so settings.py is a file that we will be working with. This includes all of the project settings. You can see it brings in the os module which works with the operating system.
+
+BASE_DIR
+We have a base directory value which is basically set to whereever the project is by using the path.dirname method which just gets the current directory and then it uses that absolute path method and passes in the current file. This could also be set as a static location or absolute path but usually your gonna just leave it as is.
+
+SECURITY_KEY
+this securioty key is used for production and you wanna keep this key hidden. If you upload to github, make sure your key is protected
+
+DEBUG
+Here we have the debug option ehich in development we want set to true and in production we wanna shut it off. This gives us very helpful error messages and warnings when things go wrong. It displays info about our code right in the browser. In production, even if something goes wrong, you dont want that information displayed to the user. So be usre to shut this off before production.
+
+ALLOWED_HOSTS
+Allowed hosts is an empty array by default and can be empty when debug is set to true but once your ready for production and you turn off debug and get ready to  deploy your gonna wanna add your allowed hosts in her. Its a list of host domains that this website can serve. Its a security measure to prevent http host header attacks which are possible even with safe server configurations. 
+
+INSTALLED_APPS
+installed apps is a list of strings that designates all of the available apps for this django website. Remember how we talked about django having multiple apps, this is where we store them in the settings file. We have some default dones that have to do with the admin part of django, sessions, authentication and so on. We can also add custom apps here. Application names should always be unique as well. even if it has a different label. All of the default apps have a label of django.contrib but we could do for instance myapp.auth because its already here even though it uses a different label.
+
+MIDDLEWARE
+Middleware is just a list of middleware that the siten uses. We have a bunch of default middleware, alot of it is security based. As you can see django includes a lot by default which is very different from flask as youll see later on.
+
+ROOT_URLCONF
+This is a string that represents the full import path to the rootURLconf or where your initial url file is. This will usually be your project name.urls
+
+TEMPLATES
+Templates are what are used to generate html for our application to display to the user. It tells django where to look for templates, what options to use and so forth.
+
+WSGI_APPLICATION
+This is the path of the WSGI application object that Django’s built-in servers use. When we created our project you can see a file called wsgi.py was created, Ill talk more about that in a minute
+
+DATABSES
+This is where youll add your apps database info. By default its using sqlite but we can change that here to use anything. If you rename this sqlite file it will actually create the file automatically. So sqlite is very easy to work with its judt not that powerful. But well be messing with this soon to use postgres.
+
+AUTH_PASSWORD_VALIDATORS
+This auth passwords validators is basically setting what type of rules we want for user passwords.
+
+Then we just have some language and time settings and finally a static_URL which is where you want to refer to static files and assets like images, css files and so on.
+
+URLS.PY
+Alright so lets talk abnout urls.py. In django like many other frameworks we have something called views. This is the markup that the user sees in the browser. This file is how we connect or route a certain url to a specific view. So in this urlpaterns list, well put paths to views or in some cases such as this we can link to another file of urls and this will make more sense later. But basically if we goto our website and go to /admin it will bring us to the admin landing page but theres many other admin related urls like maybe admin/add or admin/edit. All this will make more send later. But just think of this as our routing controller.
+
+WSGI
+ok so this last file wsgi.py. Wsgi stands for web server gateway interface. Its a specification that describes how a web server communicates with web applications, and how web applications can be chained together to process one request. It has a lot to do with hosting your site so other people can actually access it and well be talking more about that much later.
+
+So for the most part, we dont change much in these files aside from adding and changing settings and adding our url patterns. In most cases the rest are there to make django run correctly.

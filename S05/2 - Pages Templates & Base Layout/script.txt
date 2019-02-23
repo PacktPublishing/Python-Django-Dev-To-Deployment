@@ -1,0 +1,14 @@
+so every website or application that runs in a browser needs to display html. Html is the foundation and the markup language of the browser and ofcourse css is used to style that markup. Theres two very different ways to approach a web applicattion. you can render the html on the server through django or you could use django to simply send json out json data and then we could render the html using some frontend javascript framework like react or angular. In this course I wanna stick to Python and django and not venture into javascript frameworks so well be rendering our html templates on the server using django and whats called a template engine. A template engine basically allows us to render html but also include dynamic data. So lets say we fetch a list of users from a database, and well get into databases later but we cant include things like variables or loops or anything like that with just html so this is where template engines come in. So we can fetch the users from the database and then we can use the template engine syntax to loop through the users and output each one within a variable. now django supports mutliple template engines but the most popular is called jina2 which is what well be using.
+
+so lets jump it and get started with templates.
+
+- create a directory called templates with a file called home.html
+-goto the settings page and add in TEMPLATES
+DIRS:['templates']
+
+- In home.html
+<h1>This is the home template</h1>
+
+in the views file
+def home(request):
+  return render(request, 'home.html')

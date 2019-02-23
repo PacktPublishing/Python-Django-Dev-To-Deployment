@@ -1,0 +1,4 @@
+alright so remember we said django has the concept of projects and apps. THe btre_django is our project or website. Yes its an app in a global sense but to django its a project that can contain multiple apps. Now it our project or website, were gonna have home listings, thats the most important part of what this project is for is to list homes for people to buy. So where gonna create an app called listings. and anything we do that has to do with listings of homes will go in the files within that app folder. so lets go ahead and do that
+
+python manage.py startapp listings
+
